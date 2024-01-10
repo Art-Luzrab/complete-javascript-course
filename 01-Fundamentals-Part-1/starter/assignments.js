@@ -28,3 +28,13 @@ console.log("--------------------------------------------------");
 const language = "Ukrainian";
 console.log(language);
 */
+
+//Lecture: Strings and Template Literals
+
+let country = "Ukraine";
+let continent = "Europe";
+let population = "4.37 million";
+let language = "Ukrainian";
+console.log(
+  `${country} is in ${continent}, and its ${population} people speak ${language}!`
+);
