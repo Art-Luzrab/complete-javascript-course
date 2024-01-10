@@ -21,9 +21,10 @@ console.log(typeof population);
 console.log(typeof country);
 console.log(typeof language);
 console.log("--------------------------------------------------");
-*/
+
 
 //Lecture: let, const and var
 
 const language = "Ukrainian";
 console.log(language);
+*/
