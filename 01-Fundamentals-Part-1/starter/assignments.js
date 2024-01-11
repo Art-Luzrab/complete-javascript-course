@@ -38,7 +38,7 @@ let language = "Ukrainian";
 console.log(
   `${country} is in ${continent}, and its ${population} people speak ${language}!`
 );
-*/
+
 let country = "Ukraine";
 let continent = "Europe";
 let population = 4.37;
@@ -51,3 +51,13 @@ if (population > 33) {
     `${country}'s population is ${33 - population} million below average.`
   );
 }
+
+
+//Lecture: Type Conversion and Coercion
+
+console.log("9" - "5");
+console.log("19" - "13" + "17");
+console.log("19" - "13" + 17);
+console.log("123" < 57);
+console.log(5 + 6 + "4" + 9 - 4 - 2);
+*/
