@@ -71,4 +71,17 @@ if (numNeighbors === 1) {
 } else if (numNeighbors > 1) {
   console.log(" YOOOO DUDE IT HAS SO MANY NEIGHBORS!!!");
 }
+
+
+let country = "Ukraine";
+let continent = "Europe";
+let population = 4.37;
+let language = "Ukrainian";
+const isIsland = false;
+
+if (language === "English" && population < 50 && !isIsland) {
+  console.log(`Sarah should live in ${country}!`);
+} else {
+  console.log(`Sarah should not live in ${country}`);
+}
 */
