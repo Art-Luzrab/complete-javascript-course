@@ -84,4 +84,34 @@ if (language === "English" && population < 50 && !isIsland) {
 } else {
   console.log(`Sarah should not live in ${country}`);
 }
+
+
+//Lecture: The Switch Statement
+
+const language = "ooga";
+
+switch (language) {
+  case "chinese":
+  case "mandarin":
+    console.log("Most number of native speakers!");
+    break;
+
+  case "spanish":
+    console.log("2nd place in number of native speakers.");
+    break;
+
+  case "english":
+    console.log("3rd place");
+    break;
+
+  case "hindi":
+    console.log("Number 4");
+    break;
+
+  case "arabic":
+    console.log("5th most spoken language");
+    break;
+  default:
+    console.log(":(");
+}
 */
