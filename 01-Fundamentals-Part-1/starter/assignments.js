@@ -114,4 +114,15 @@ switch (language) {
   default:
     console.log(":(");
 }
+
+
+const population = 130;
+
+population > 33
+  ? console.log("Ukraines population is above average!")
+  : console.log("Ukraine's population is below average.");
+
+console.log(
+  `Ukraine's population is ${population > 30 ? "above" : "below"} average.`
+);
 */
