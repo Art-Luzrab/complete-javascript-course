@@ -37,4 +37,13 @@ function percentageOfWorld2(population) {
 const ukrainePercentage2 = percentageOfWorld2(4.75);
 const americaPercentage2 = percentageOfWorld2(331);
 console.log(ukrainePercentage2, americaPercentage2);
+
+
+const percentageOfWorld3 = (population) => (population / 7900) * 100;
+
+const ukrainePercent = percentageOfWorld3(4.75);
+const americaPercent = percentageOfWorld3(331);
+console.log(
+  `Percent of Ukrianes population: ${ukrainePercent} Percent of Americas population: ${americaPercent}`
+);
 */
