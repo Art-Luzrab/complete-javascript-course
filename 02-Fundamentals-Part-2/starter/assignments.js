@@ -46,4 +46,17 @@ const americaPercent = percentageOfWorld3(331);
 console.log(
   `Percent of Ukrianes population: ${ukrainePercent} Percent of Americas population: ${americaPercent}`
 );
+
+
+const percentageOfWorld1 = function (population) {
+  return (population / 7900) * 100;
+};
+
+const describePopulation = function (country, population) {
+  const worldPercentage = percentageOfWorld1(population);
+  return `${country} has a population of ${population} million people, which is about %${worldPercentage} of the world.`;
+};
+
+const unitedStates = describePopulation("USA", 331);
+console.log(unitedStates);
 */
