@@ -79,4 +79,21 @@ const percentages = [
 ];
 
 console.log(percentages);
+
+
+const neighbors = ["Canada", "Mexico"];
+
+neighbors.push("Utopia");
+console.log(neighbors);
+
+neighbors.pop("Utopia");
+console.log(neighbors);
+
+if (!neighbors.includes("Germany")) {
+  console.log("Probably not a central European country.");
+}
+
+console.log(neighbors.indexOf("Canada"));
+neighbors[0] = "Communist State";
+console.log(neighbors);
 */
