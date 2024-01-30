@@ -96,4 +96,13 @@ if (!neighbors.includes("Germany")) {
 console.log(neighbors.indexOf("Canada"));
 neighbors[0] = "Communist State";
 console.log(neighbors);
+
+//Lecture: Intro to Objects
+
+const myCountry = {
+  country: "Ukraine",
+  capital: "Kyiv",
+  language: "Ukrainian",
+  neighbors: ["Russia", "Poland", "Hungary"],
+};
 */

@@ -211,4 +211,14 @@ if (friends.includes("Steven")) {
 } else {
   console.log("You do not have a friend called Steven");
 }
+
+
+// Lecture 42. Intro to Objects
+const arthur = {
+  firstName: "Arthur",
+  lastName: "Barzul",
+  age: 2024 - 2002,
+  job: "unemployed",
+  friends: ["Scott", "Julia", "Yingshi", "Nikios"],
+};
 */
