@@ -103,6 +103,25 @@ const myCountry = {
   country: "Ukraine",
   capital: "Kyiv",
   language: "Ukrainian",
+  population: 4.75,
   neighbors: ["Russia", "Poland", "Hungary"],
 };
+
+
+//Lecture 43 Dot vs. Bracket Notation
+
+const myCountry = {
+  country: "Ukraine",
+  capital: "Kyiv",
+  language: "Ukrainian",
+  population: 4.75,
+  neighbors: ["Russia", "Poland", "Hungary"],
+};
+
+console.log(
+  `${myCountry.country} has ${myCountry.population} million ${myCountry.language} speaking people, ${myCountry.neighbors.length} neighboring countries and a capital called ${myCountry.capital}.`
+);
+
+console.log(myCountry.population + 2);
+console.log(myCountry["population"] - 2);
 */

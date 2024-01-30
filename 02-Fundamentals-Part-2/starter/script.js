@@ -221,4 +221,49 @@ const arthur = {
   job: "unemployed",
   friends: ["Scott", "Julia", "Yingshi", "Nikios"],
 };
+
+
+//Lecture 43: Dot vs Bracket notation
+
+const arthur = {
+  firstName: "Arthur",
+  lastName: "Barzul",
+  age: 2024 - 2002,
+  job: "unemployed",
+  friends: ["Scott", "Julia", "Yingshi", "Nikios"],
+};
+
+console.log(arthur);
+
+// Dot notation
+console.log(arthur.lastName);
+console.log(arthur["lastName"]);
+
+// Bracket Notation
+const nameKey = "Name";
+console.log(arthur["first" + nameKey]);
+console.log(arthur["last" + nameKey]);
+
+const interestedIn = prompt(
+  "What do you want to know about Arthur? Choose between firstName, lastName, age, job and friends"
+);
+
+if (arthur[interestedIn]) {
+  console.log(arthur[interestedIn]);
+} else {
+  console.log(
+    "Wrong request! What do you want to know about Arthur? Choose between firstName, lastName, age, job and friends? "
+  );
+}
+
+arthur.location = "Ukraine";
+arthur["twitter"] = "none";
+console.log(arthur);
+
+// Challenge
+// "Arthur has 3 friends, and his best friend is called Scott"
+
+console.log(
+  `${arthur.firstName} has ${arthur.friends.length} friends and his best friend is named ${arthur.friends[0]}.`
+);
 */
