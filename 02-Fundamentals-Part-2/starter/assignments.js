@@ -124,4 +124,32 @@ console.log(
 
 console.log(myCountry.population + 2);
 console.log(myCountry["population"] - 2);
+
+
+// Lecture 43: Object methods
+
+const myCountry = {
+  country: "Ukraine",
+  capital: "Kyiv",
+  language: "Ukrainian",
+  population: 4.75,
+  neighbors: ["Russia", "Poland", "Hungary"],
+  isIsland: function () {
+    this.isIsland = this.neighbors.length === 0 ? true : false;
+  },
+  describe: function () {
+    return `${this.country} has  ${this.population} million ${
+      this.language
+    } speaking people, ${
+      this.neighbors.length
+    } neigboring countries and a capital called ${this.capital}. ${
+      this.country
+    } is ${(this.isIsland = true ? "not an island." : "is and island.")}`;
+  },
+};
+console.log(myCountry.describe());
+myCountry.describe();
+myCountry.isIsland;
+
+console.log(myCountry);
 */
