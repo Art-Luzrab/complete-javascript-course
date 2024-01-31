@@ -212,3 +212,25 @@ while (i < populations.length) {
 
 console.log(percentages3);
 */
+
+// CHALLENGE #4 (because it was buggin on Udemy)
+
+const calcTip = function (bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+};
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+
+let tips = [];
+let totals = [];
+
+for (i = 0; i < bills.length; i++) {
+  tipTotal = calcTip(bills[i]);
+  tips.push(tipTotal);
+
+  combined = tips[i] + bills[i];
+  totals.push(combined);
+}
+console.log(bills);
+console.log(tips);
+console.log(totals);
