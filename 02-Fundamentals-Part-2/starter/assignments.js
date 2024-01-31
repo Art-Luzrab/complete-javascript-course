@@ -191,4 +191,24 @@ for (let i = 0; i < listOfNeighbors.length; i++) {
     console.log(`Neigbors: ${listOfNeighbors[i][x]}`);
   }
 }
+
+
+// Lecture 49: While loop
+
+const populations = [4.75, 331, 83.2, 125.7];
+console.log(populations.length);
+let percentages3 = [];
+
+function worldPop(population) {
+  return (population / 7900) * 100;
+}
+
+let i = 0;
+while (i < populations.length) {
+  const percent = worldPop(populations[i]);
+  percentages3.push(percent);
+  i++;
+}
+
+console.log(percentages3);
 */
