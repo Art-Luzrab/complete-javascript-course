@@ -378,4 +378,31 @@ for (let i = 0; i < arthurArray.length; i++) {
   if (typeof arthurArray[i] === "number") break;
   console.log(arthurArray[i], typeof arthurArray[i]);
 }
+
+
+// Lecture 48: Looping backwards and Loops in Loops
+
+const arthur = [
+  "Arthur",
+  "Barzul",
+  2024 - 2002,
+  "unemployed",
+  ["Scott, Julia, Yingshi"],
+  true,
+];
+
+// 0, 1, ..., 4
+// 4, 3, ..., 0
+
+for (let i = arthur.length - 1; i >= 0; i--) {
+  console.log(i, arthur[i]);
+}
+
+for (let excersize = 1; excersize < 4; excersize++) {
+  console.log(`------- Starting excersize ${excersize}`);
+
+  for (let rep = 1; rep < 6; rep++) {
+    console.log(`Excersize ${excersize} pumping iron repetion ${rep} 🏋️‍♀️`);
+  }
+}
 */
