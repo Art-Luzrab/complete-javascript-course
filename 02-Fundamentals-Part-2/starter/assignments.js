@@ -230,6 +230,8 @@ for (i = 0; i < bills.length; i++) {
 
   combined = tips[i] + bills[i];
   totals.push(combined);
+
+  console.log(`Calculating... 🤓`);
 }
 console.log(bills);
 console.log(tips);
