@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: rgb(255, 247, 201);
+  background-color: rgb(253, 253, 213);
   font-family: Arial;
   font-size: 20px;
   padding: 50px;
@@ -30,8 +30,8 @@ p {
 }
 
 #your-name {
-  background-color: rgb(255, 220, 105);
-  border: 5px solid #444;
+  background-color: rgb(251, 251, 104);
+  border: 5px solid #000000;
   width: 400px;
   padding: 25px;
   margin-top: 30px;
@@ -44,7 +44,7 @@ button {
 }
 
 a {
-  background-color: yellowgreen;
+  background-color: yellow;
 }
 
 #course-image {
