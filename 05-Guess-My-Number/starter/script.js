@@ -12,6 +12,7 @@
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 let score = 20;
+let highscore = 0;
 
 // Check button ------------------------------------------------------------
 document.querySelector('.check').addEventListener('click', function () {
@@ -21,15 +22,20 @@ document.querySelector('.check').addEventListener('click', function () {
   // When there is no input
   if (!guess) {
     document.querySelector('.message').textContent = '⛔ No number!';
-  }
-  // When Player wins
-  if (guess === secretNumber) {
+
+    //When the player wins!
+  } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = '🎉 Correct Number!';
     score++;
     document.querySelector('.score').textContent = score;
     document.querySelector('body').style.backgroundColor = 'green';
     document.querySelector('.number').style.width = '30rem';
     document.querySelector('.number').textContent = secretNumber;
+
+    if (score > highscore) {
+      highscore = score;
+      document.querySelector('.highscore').textContent = highscore;
+    }
 
     //When guess is too high
   } else if (guess > secretNumber) {
