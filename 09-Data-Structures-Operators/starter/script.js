@@ -76,10 +76,72 @@ const entries = Object.entries(openingHours);
 // for (const [day, { open, close }] of entries) {
 //   console.log(`On ${day} we open at ${open} and close at ${close}.`);
 // }
-/////////////////////////////////////////////////////////////
-// Working With Strings - Part 1
+
+//////////////////////////////////////////////////////////////
+// Working With Strings - Part 2
 const airline = 'TAP Air Portugal';
 const plane = 'A320';
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalization
+const passenger = 'jOnAS'; // Jonas
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// Comparing Emails
+const email = 'hello@jonas.io';
+const loginEmail = '  Hello@Jonas.io \n';
+
+// const lowerEmail = loginEmail.toLocaleLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+
+const normalizedEmail = loginEmail.toLocaleLowerCase().trim();
+console.log(normalizedEmail);
+console.log(email === normalizedEmail);
+
+// replacing
+const priceGB = '288,97£';
+const priceUS = priceGB.replace('£', '$').replace(',', '.');
+
+console.log(priceUS);
+
+const announcement =
+  'All passengers come to barding door 23. Boarding door 23!';
+
+console.log(announcement.replaceAll('door', 'gate'));
+
+// or
+
+console.log(announcement.replaceAll(/door/g, 'gate'));
+
+// Booleans
+const plane2 = 'Airbus A320neo';
+console.log(plane2.includes('A320'));
+console.log(plane2.includes('Boeing'));
+console.log(plane2.startsWith('Air'));
+
+if (plane2.startsWith('Airbus') && plane2.endsWith('neo')) {
+  console.log('Part of the NEW Airbus family!');
+}
+
+// Practice excersize
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
+    console.log('You are not allowed on board');
+  } else {
+    console.log('Welcome Aboard ✈');
+  }
+};
+checkBaggage('I have a laptop, some Food and a pocket Knife');
+checkBaggage('Socks and Camera');
+checkBaggage('Got some snacks and a gun for protection');
+/*
+  /////////////////////////////////////////////////////////////
+// Working With Strings - Part 1
 
 console.log(plane[0]);
 console.log(plane[1]);
@@ -115,7 +177,6 @@ checkMiddleSeat('3E');
 console.log(new String('jonas'));
 console.log(typeof new String('jonas'));
 console.log(typeof new String('jonas').slice(1));
-/*
 /////////////////////////////////////////////////////////////
 // Maps: Iteration
 const question = new Map([
