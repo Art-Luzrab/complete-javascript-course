@@ -4,6 +4,22 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+//String Method Practice
+
+const getCode = str => str.slice(0, 3).toUpperCase();
+
+for (const flight of flights.split('+')) {
+  const [type, from, to, time] = flight.split(';');
+  const output = ` ${type.startsWith('_Delayed') ? '🔴' : ''}${type.replaceAll(
+    '_',
+    ' '
+  )} from ${getCode(from)} to ${getCode(to)} (${time.replace(
+    ':',
+    'h'
+  )})`.padStart(50);
+  console.log(output);
+}
+
 // Data needed for first part of the section
 
 const weekdays = ['mon', 'tues', 'wed', 'thu', 'fri', 'sat', 'sun'];
@@ -76,6 +92,46 @@ const entries = Object.entries(openingHours);
 // for (const [day, { open, close }] of entries) {
 //   console.log(`On ${day} we open at ${open} and close at ${close}.`);
 // }
+
+/*
+//Coding Challenge 4
+document.body.append(document.createElement('textarea'));
+document.body.append(document.createElement('button'));
+const text = document.querySelector('textarea').value;
+// Video solution
+
+document.querySelector('button').addEventListener('click', function () {
+  const text = document.querySelector('textarea').value;
+  const rows = text.split('\n');
+  console.log(rows);
+
+  for (const [i, row] of rows.entries()) {
+    const [first, second] = row.toLowerCase().trim().split('_');
+    const output = `${first}${second.replace(
+      second[0],
+      second[0].toUpperCase()
+    )}`;
+    console.log(`output.padEnd(20, ' ')${'✅'.repeat(i + 1)}`);
+  }
+});
+
+// My solution, works with individual words entered, doesn't mess with spaces
+// document.addEventListener('click', function () {
+//   const text = document.querySelector('textarea').value;
+//   const cleanWordarr = text.replace('_', ' ').split(' ');
+//   let camelCase = [];
+//   const firstWord = cleanWordarr[0].toLowerCase();
+
+//   const secondWordCase =
+//     cleanWordarr[1].slice(0, 1).toUpperCase() +
+//     cleanWordarr[1].slice(1).toLowerCase();
+
+//   camelCase.push(firstWord, secondWordCase);
+//   const camelCaseFinal = camelCase.join('');
+//   console.log(camelCaseFinal);
+// });
+
+
 ///////////////////////////////////////////////////////////////
 // Working With Strings - Part 3
 console.log('a+very+nice+string'.split('+'));
@@ -125,7 +181,6 @@ planesInLine(5);
 planesInLine(3);
 planesInLine(12);
 
-/*
   //////////////////////////////////////////////////////////////
 // Working With Strings - Part 2
 const airline = 'TAP Air Portugal';
