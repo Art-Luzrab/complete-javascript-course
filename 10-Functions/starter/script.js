@@ -118,8 +118,8 @@ greeterHey('Jonas');
 greeterHey('Steven');
 
 greet('Hello')('Jonas');
-*/
 
+*/
 // Lecture 134. The Call and Apply Methods ------------------------------------------------------------------------------------------------
 
 const lufthansa = {
@@ -173,3 +173,53 @@ book.apply(swiss, flightData);
 console.log(swiss);
 
 book.call(swiss, ...flightData);
+
+// Lecture 135. The Bind Method ----------------------------------------------------------------------------------------------
+// book.call(eurowings, 23, 'Sarah Williams');
+
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+// Dont need flight name bc its already binded
+bookEW(23, 'Steven Williams');
+
+//                                   Number is preset, all we need now is a name!
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Arthur Barzul');
+bookEW23('Martha Cooper');
+
+// With Event Listeners
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+// lufthansa.buyPlane();
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+// Partial Application
+
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 200));
+
+// Dont need this, so we put null, and set the rate to 0.23, not touching the value parameter
+const addVAT = addTax.bind(null, 0.23);
+// same as:  addVAT = value => value + value * 0.23;
+
+console.log(addVAT(100));
+console.log(addVAT(23));
+
+// Challenge Function Returning Function
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * 0.23;
+  };
+};
+const addVAT2 = addTaxRate(0.23);
+
+addVAT2(100);
+addVAT2(23);
