@@ -68,7 +68,7 @@ newPassport(arthur);
 checkIn(flight, arthur);
 
 // JavaScript does not have pass by reference!
-*/
+
 
 // 132. Functions Accepting CallBack Functions -----------------------------------------------------------------------------------
 // First-class function
@@ -100,3 +100,21 @@ const high5 = function () {
 document.body.addEventListener('click', high5);
 
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
+*/
+
+// Lecture 133. Functions Returning Functions --------------------------------------------------------------------------------------------
+
+const greet = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}`);
+  };
+};
+// // Challenge
+// const greet = greeting => {
+//   return name => console.log(`${greeting} ${name}`);
+// };
+const greeterHey = greet('Hey');
+greeterHey('Jonas');
+greeterHey('Steven');
+
+greet('Hello')('Jonas');
