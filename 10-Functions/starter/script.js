@@ -2,7 +2,7 @@
 
 /**  *
 
-// Lecture 129. Default Values
+// Lecture 129. Default Values -----------------------------------------------------------------------------------
 
 const bookings = [];
 const createBooking = function (
@@ -29,7 +29,7 @@ createBooking('LH123', 100);
 // Cannot skip arguments, always in order unless you do it like this:
 createBooking('LH123', undefined, 1000);
 
-// Lecture 130. How Passing Arguments Works: Value vs. Reference
+// Lecture 130. How Passing Arguments Works: Value vs. Reference --------------------------------------------------------------------------------
 
 const flight = 'LH234';
 const arthur = {
@@ -69,3 +69,34 @@ checkIn(flight, arthur);
 
 // JavaScript does not have pass by reference!
 */
+
+// 132. Functions Accepting CallBack Functions -----------------------------------------------------------------------------------
+// First-class function
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+// First-class function
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+// Higher-order function
+const transformer = function (str, fn) {
+  console.log(`Original String: ${str}`);
+  console.log(`Transformed String:, ${fn(str)}`);
+
+  console.log(`Transformed by: ${fn.name}`);
+};
+//Higher-order                         First-class / Callback function
+transformer('JavaScript is the best!', upperFirstWord);
+transformer('JavaScript is the best!', oneWord);
+
+// JS uses callbacks all the time!
+const high5 = function () {
+  console.log('👋');
+};
+//            Higher-order             First-class / Callback function
+document.body.addEventListener('click', high5);
+
+['Jonas', 'Martha', 'Adam'].forEach(high5);
