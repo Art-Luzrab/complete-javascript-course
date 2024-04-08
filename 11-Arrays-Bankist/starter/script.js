@@ -74,7 +74,7 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
-
+/** 
 // Lecture 143. Simple Array Methods
 
 let arr = ['a', 'b', 'c', 'd', 'e'];
@@ -109,3 +109,24 @@ console.log([...arr, ...arr2]); // returns combined array
 
 // Join
 console.log(letters.join(' - ')); // returns a - b - c - d - e .....
+*/
+
+// Lecture 144. The New At Method
+
+const arr = [23, 11, 64];
+console.log(arr[0]);
+
+// At method
+console.log(arr.at(0)); // array at position 0
+
+// getting the last array element
+console.log(arr[arr.length - 1]); // 64
+console.log(arr.slice(-1)[0]); // 64
+console.log(arr.at(-1)); // 64
+
+// at method used if you want to get the last element of an array and or if you want to use method chaining
+
+// brackets used when you need to quickly get an element from an array
+
+console.log('jonas'.at(0)); // j
+console.log('jonas'.at(-1)); // s
