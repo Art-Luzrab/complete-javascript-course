@@ -74,3 +74,38 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// Lecture 143. Simple Array Methods
+
+let arr = ['a', 'b', 'c', 'd', 'e'];
+
+// Slice Method
+console.log(arr.slice(2)); // ['c', 'd', 'e']
+console.log(arr.slice(2, 4)); // ['c', 'd']
+console.log(arr.slice(-2)); // ['d', 'e']
+console.log(arr.slice(-1)); // ['e']
+console.log(arr.slice(1, -2)); // ['b','c']
+console.log(arr.slice()); // creates a copy
+console.log([...arr]); // creates a copy
+
+// Splice Method (mutates array)
+// console.log(arr.splice(2)); // removes c, d and e from array
+arr.splice(-1); // removes last element ('e')
+console.log(arr);
+arr.splice(1, 2); // start index 1, remove 2 elements (including start index)
+console.log(arr);
+
+// Reverse
+
+arr = ['a', 'b', 'c', 'd', 'e'];
+const arr2 = ['j', 'i', 'h', 'g', 'f'];
+console.log(arr2.reverse()); // returns reversed array, and mutates it
+console.log(arr2);
+
+// Concat
+const letters = arr.concat(arr2);
+console.log(letters); // returns combined array
+console.log([...arr, ...arr2]); // returns combined array
+
+// Join
+console.log(letters.join(' - ')); // returns a - b - c - d - e .....
