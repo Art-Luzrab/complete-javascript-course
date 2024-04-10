@@ -86,6 +86,23 @@ displayMovements(account1.movements);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+// Lecture 152 Computing Usernames
+
+const createUsernames = function (acc) {
+  acc.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+const user = 'Steven Thomas Williams'; //stw
+
+createUsernames(accounts);
+console.log(accounts);
+
 /////////////////////////////////////////////////
 /** 
 // Lecture 143. Simple Array Methods
@@ -246,7 +263,7 @@ const checkDogs = function (dogsJulia, dogsKate) {
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
-*/
+
 
 //Lecture 151. The map method
 
@@ -279,3 +296,4 @@ const movementsDescriptions = movements.map(
     )}`
 );
 console.log(movementsDescriptions);
+*/
