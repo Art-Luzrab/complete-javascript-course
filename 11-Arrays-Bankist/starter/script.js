@@ -451,7 +451,7 @@ console.log(totalDepositsUSD);
 
 // you can only chain methods if the first one
 // returns an array!
-*/
+
 
 // Coding Challenge #3
 
@@ -462,13 +462,32 @@ console.log(totalDepositsUSD);
 
 // GOOD LUCK 😀
 
-const calcAverageHumanAge = function (ages) {
-  const humanAges = ages
+const calcAverageHumanAge = ages =>
+  ages
     .map(dogAge => (dogAge <= 2 ? 2 * dogAge : 16 + dogAge * 4))
     .filter(age => age >= 18)
     .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
-  console.log(humanAges);
-};
 
-calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
-calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+
+
+// Lecture 158. The Find Method
+
+const firstWithdrawal = movements.find(mov => mov < 0);
+console.log(movements);
+console.log(firstWithdrawal);
+// find returns an element from an array, does not make a new one
+
+console.log(accounts);
+
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
+
+// for
+for (const account of accounts) {
+  if (account.owner === 'Jessica Davis') {
+    console.log(account);
+  }
+}
+*/
