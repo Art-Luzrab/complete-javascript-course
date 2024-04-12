@@ -82,9 +82,34 @@ displayMovements(account1.movements);
 
 const calcDisplayBalance = function (movements) {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance}€`;
 };
 calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const out = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(out)}€`;
+
+  const interest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter((int, i, arr) => {
+      console.log(arr);
+      return int >= 1;
+    })
+    .reduce((acc, int) => acc + int, 0);
+
+  labelSumInterest.textContent = `${interest}€`;
+};
+
+calcDisplaySummary(account1.movements);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
@@ -356,7 +381,7 @@ const min = movements.reduce((acc, mov) => {
   }
 });
 console.log(min);
-*/
+
 
 // CODING CHALLENGE #2
 
@@ -390,14 +415,40 @@ const calcAverageHumanAge = function (ages) {
 
   // 3
 
-  const total = adults.reduce((acc, cur) => {
-    return acc + cur;
-  }, 0);
+  // const avg =
+  //   adults.reduce((acc, cur) => {
+  //     return acc + cur;
+  //   }, 0) / adults.length;
+  // console.log(avg);
 
-  const avg = total / adults.length;
+  const avg = adults.reduce((acc, age, i, arr) => acc + age / arr.length, 0);
   console.log(avg);
 };
+
+// 2 3 (2+3)/2 = 2.5 === 2/2+3/2 = 2.5
 
 // 4
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
 calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]);
+
+
+// Lecture 156. The Magic of Chaining Methods
+
+const eurToUsd = 1.1;
+console.log(movements);
+
+// PIPELINE
+const totalDepositsUSD = movements
+  .filter(mov => mov > 0)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+  // .map(mov => mov * eurToUsd)
+  .reduce((acc, mov) => acc + mov, 0);
+
+console.log(totalDepositsUSD);
+
+// you can only chain methods if the first one
+// returns an array!
+*/
