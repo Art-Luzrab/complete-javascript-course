@@ -604,3 +604,36 @@ console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
 */
+
+// 163. flat and flatMap
+
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+
+// flat method (only goes one level deep)
+console.log(arr.flat()); // [1, 2, 3, 4, 5, 6, 7, 8];
+
+// unless you specify the depth.
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat(2));
+
+// const accountMovements = accounts.map(acc => acc.movements);
+// console.log(accountMovements);
+
+// const allMovements = accountMovements.flat();
+// console.log(allMovements);
+
+// const overallBalance = allMovements.reduce((acc, curr) => acc + curr, 0);
+// console.log(overallBalance);
+
+// flat
+const overallBalance = accounts
+  .map(acc => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+// flatMap (only goes one level, for more, use flat())
+const overallBalance2 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
