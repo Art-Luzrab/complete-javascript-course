@@ -62,10 +62,12 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Lecture 148. Creating DOM Elements
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = '';
-  // .textContent = 0
-  movements.forEach(function (mov, i, arr) {
+
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i, arr) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = `
@@ -218,7 +220,12 @@ btnClose.addEventListener('click', function (e) {
   }
   inputCloseUsername.value = inputClosePin.value = '';
 });
-
+let sorted = false;
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -603,7 +610,7 @@ const deposit = mov => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
-*/
+
 
 // 163. flat and flatMap
 
@@ -637,3 +644,39 @@ const overallBalance2 = accounts
   .flatMap(acc => acc.movements)
   .reduce((acc, mov) => acc + mov, 0);
 console.log(overallBalance);
+*/
+// Lecture 164. Sorting Arrays
+
+// sort() mutates array
+// Strings
+const owners = ['Jonas', 'Zack', 'Adam', 'Martha'];
+console.log(owners.sort());
+
+// Numbers
+console.log(movements);
+
+// return < 0, A, B (keep order)
+// return > 0 B, A (switch order)
+
+// Ascending
+// movements.sort((a, b) => {
+//   if (a > b) return 1;
+
+//   if (a < b) return -1;
+// });
+// console.log(movements);
+
+// faster way
+movements.sort((a, b) => a - b);
+console.log(movements);
+
+// Desending
+// movements.sort((a, b) => {
+//   if (a > b) return -1;
+
+//   if (a < b) return 1;
+// });
+
+// faster way
+movements.sort((a, b) => b - a);
+console.log(movements);
