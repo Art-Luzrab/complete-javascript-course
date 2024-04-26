@@ -367,7 +367,7 @@ labelBalance.addEventListener('click', function () {
     if (i % 3 === 0) row.style.backgroundColor = 'blue';
   });
 });
-*/
+
 
 // Lecture 174. Numeric Separators _
 
@@ -386,3 +386,46 @@ console.log(PI); // 3.1415
 
 console.log(Number('230_000')); // NaN
 console.log(parseInt('230_000')); // 230
+*/
+
+// Lecture 175. Working with BigInt
+
+// Highest Number JavaScript Can Work With
+
+console.log(2 ** 53 - 1); // 9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
+// starts to get funky after...
+console.log(2 ** 53 + 1); // 9007199254740991
+console.log(2 ** 53 + 2); // 9007199254740994
+console.log(2 ** 53 + 3); // 9007199254740996
+console.log(2 ** 53 + 4); // 9007199254740991
+
+// BigInt = big integer (n) or (BigInt())
+console.log(44590340593094509350930909509n); // 44590340593094509350930909509n
+
+// only use BigInt() for smaller but still large numbers!
+console.log(BigInt(44590340593)); // 44590340593n
+
+// Operations
+console.log(10000n + 10000n); // 20000n
+console.log(1345111111111111123444444n * 21333333333444444444452n);
+//  28695703703853160756948425186555555506266024688n
+// console.log(Math.sqrt(16n)); // Does not work
+
+const huge = 12308453263245634435263244n;
+const num = 23;
+
+console.log(huge * BigInt(num));
+// 283094425054649592011054612n
+
+// Exceptions
+console.log(20n > 15); // true
+console.log(20n === 20); // false
+console.log(typeof 20n); //bigInt
+console.log(20n == 20); // true
+
+console.log(huge + ' is REALLY BIG!!!');
+
+// Divisions
+console.log(11n / 3n); // 3n
+console.log(10 / 3); // 3.33333333....
