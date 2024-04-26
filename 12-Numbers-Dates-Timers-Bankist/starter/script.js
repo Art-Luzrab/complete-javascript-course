@@ -386,7 +386,7 @@ console.log(PI); // 3.1415
 
 console.log(Number('230_000')); // NaN
 console.log(parseInt('230_000')); // 230
-*/
+
 
 // Lecture 175. Working with BigInt
 
@@ -429,3 +429,45 @@ console.log(huge + ' is REALLY BIG!!!');
 // Divisions
 console.log(11n / 3n); // 3n
 console.log(10 / 3); // 3.33333333....
+
+*/
+// Lecture 176. Creating Dates
+
+// Create a Date
+const now = new Date();
+console.log(now); // current date
+
+console.log(new Date('Apr 26 2024 10:54:23')); // full detailed time
+console.log(new Date('December 25, 2020')); // detailed time at that date
+console.log(new Date(account1.movementsDates[0])); // date in account1
+
+console.log(new Date(2037, 10, 19, 15, 23, 5));
+// year, month(zero based), date, hour, min, sec
+
+console.log(new Date(2037, 10, 31)); // Tue Dec 01 2037
+
+console.log(new Date(0)); // beginning of unix time
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+// 3 days * 24 hours * 60 minutes * 60 seconds * 1000 miliseconds
+
+// Working With Dates
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear()); // 2037
+console.log(future.getMonth()); // 10 (zero based so 11)
+console.log(future.getDate()); // 19
+console.log(future.getDay()); // 4
+console.log(future.getHours()); // 15
+console.log(future.getMinutes()); // 23
+console.log(future.toISOString()); // 2037-11-19T23:23:00.000Z
+console.log(future.getTime()); // 2142285780000 milliseconds past since
+
+// convert last number to date
+console.log(new Date(2142285780000));
+//Thu Nov 19 2037 15:23:00 GMT-0800 (Pacific Standard Time)
+
+// current time stamp
+console.log(Date.now()); // 1714154857821
+
+future.setFullYear(2040);
+console.log(future); // Mon Nov 19 2040 15:23:00 GMT-0800 (Pacific Standard Time)
