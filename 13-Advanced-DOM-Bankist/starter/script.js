@@ -30,6 +30,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+/** */
 // Lecture 187. Selecting, Creating and Deleting Elements
 
 // Selecting Elements
@@ -69,3 +70,55 @@ document
     message.remove(); // new way
     // message.parentElement.removeChild(message); // old way (dom traversing)
   });
+
+// Lecture 188. Styles, Attributes and Classes
+
+// Styles
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+
+console.log(message.style.color); // doesnt work
+console.log(message.style.backgroundColor); // rgb(55, 56, 61)
+
+console.log(getComputedStyle(message).color); // shows the color property of message
+console.log(getComputedStyle(message).height); // shows height of message
+
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + 'px'; // adds 40px to height
+// root
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+// Attributes (src, alt, class, id)
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt); //Bankist logo
+console.log(logo.className); // nav__logo
+
+logo.alt = 'Beautiful Minimalist Logo';
+
+// Non-standard
+console.log(logo.designer); // undefined
+console.log(logo.getAttribute('designer')); // Jonas
+logo.setAttribute('company', 'Bankist'); // creates new 'company' attribute
+
+console.log(logo.src); //http://127.0.0.1:5500/13-Advanced-DOM-Bankist/starter/img/logo.png
+console.log(logo.getAttribute('src')); //img/logo.png
+
+const link = document.querySelector('.nav__link--btn');
+
+console.log(link.href); // http://127.0.0.1:5500/13-Advanced-DOM-Bankist/starter/index.html#
+console.log(link.getAttribute('href')); // #
+
+// Data attributes
+// added attribute data-version-number="3.0" to nav image
+console.log(logo.dataset.versionNumber); // 3.0
+
+// Classes
+
+// Does not interfere with original classes
+logo.classList.add('c');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c'); // not includes()
+
+// Don't use, will override all classes
+logo.className = 'jonas';
