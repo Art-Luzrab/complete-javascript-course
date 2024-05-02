@@ -30,7 +30,7 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
-/** */
+/** 
 // Lecture 187. Selecting, Creating and Deleting Elements
 
 // Selecting Elements
@@ -72,7 +72,6 @@ document
   });
 
 // Lecture 188. Styles, Attributes and Classes
-
 // Styles
 message.style.backgroundColor = '#37383d';
 message.style.width = '120%';
@@ -122,3 +121,39 @@ logo.classList.contains('c'); // not includes()
 
 // Don't use, will override all classes
 logo.className = 'jonas';
+*/
+
+// Lecture 189: Implementing Smooth Scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect(); // grabs coordinates of element
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current Scroll (X/Y)', window.pageXOffset, window.pageYOffset); // current window position
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  ); // x and y of viewable viewport
+
+  // Scrolling (oldschool way)
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset, // current position + current scroll
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // }); // creates smooth scroll effect
+
+  // Modern Way (works only with modern browsers)
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
