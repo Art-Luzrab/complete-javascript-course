@@ -7,6 +7,8 @@ const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -29,7 +31,73 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+// Lecture 189: Implementing Smooth Scrolling
+// Button Scrollijng
 
+btnScrollTo.addEventListener('click', function (e) {
+  const s1coords = section1.getBoundingClientRect(); // grabs coordinates of element
+  console.log(s1coords);
+
+  console.log(e.target.getBoundingClientRect());
+
+  console.log('Current Scroll (X/Y)', window.pageXOffset, window.pageYOffset); // current window position
+
+  console.log(
+    'height/width viewport',
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  ); // x and y of viewable viewport
+
+  // Scrolling (oldschool way)
+  // window.scrollTo(
+  //   s1coords.left + window.pageXOffset, // current position + current scroll
+  //   s1coords.top + window.pageYOffset
+  // );
+
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // }); // creates smooth scroll effect
+
+  // Modern Way (works only with modern browsers)
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+// Page Navigation
+
+// Lecture 193. Event Delegation: Implementing Page Navigation
+
+// less effecient way (when theres not a lot of elements)
+// document.querySelectorAll('.nav__link').forEach(function (el) {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+// Event Delegation
+// 1. Add event listener to common parent element
+// 2. Determine what element originated the event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  console.log(e.target);
+  e.preventDefault();
+
+  // Matching Strategy
+  if (e.target.classList.contains('nav__link')) {
+    e.preventDefault();
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
 /** 
 // Lecture 187. Selecting, Creating and Deleting Elements
 
@@ -122,42 +190,7 @@ logo.classList.contains('c'); // not includes()
 // Don't use, will override all classes
 logo.className = 'jonas';
 */
-
-// Lecture 189: Implementing Smooth Scrolling
-
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
-btnScrollTo.addEventListener('click', function (e) {
-  const s1coords = section1.getBoundingClientRect(); // grabs coordinates of element
-  console.log(s1coords);
-
-  console.log(e.target.getBoundingClientRect());
-
-  console.log('Current Scroll (X/Y)', window.pageXOffset, window.pageYOffset); // current window position
-
-  console.log(
-    'height/width viewport',
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  ); // x and y of viewable viewport
-
-  // Scrolling (oldschool way)
-  // window.scrollTo(
-  //   s1coords.left + window.pageXOffset, // current position + current scroll
-  //   s1coords.top + window.pageYOffset
-  // );
-
-  // window.scrollTo({
-  //   left: s1coords.left + window.pageXOffset,
-  //   top: s1coords.top + window.pageYOffset,
-  //   behavior: 'smooth',
-  // }); // creates smooth scroll effect
-
-  // Modern Way (works only with modern browsers)
-  section1.scrollIntoView({ behavior: 'smooth' });
-});
-
+/** 
 // Lecture 190: Types of Events and Event Handlers
 // event reference on MDN
 
@@ -174,3 +207,65 @@ setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000); // remove
 // h1.onmouseenter = function (e) {
 //   alert('addEventListener: Great! You are reading the heading!');
 // };
+*/
+
+/** 
+// Lecture 192. Event Propagation (bubbling) in Practice
+
+// rgb(255,255,255)
+const randomInt = (min, max) => Math.floor(Math.random() * (max - min) + min);
+const randomColor = () =>
+  `rgb(${randomInt(0, 255)}, ${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('LINK', e.target, e.currentTarget);
+  console.log(e.currentTarget === this); // true
+
+  // Stop propagation
+  // e.stopPropagation(); // color only changes on '.nav__link'
+});
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('Container', e.target, e.currentTarget);
+});
+
+document.querySelector('.nav').addEventListener('click', function (e) {
+  this.style.backgroundColor = randomColor();
+  console.log('NAV', e.target, e.currentTarget);
+});
+
+// capturing is rarely used in modern days
+*/
+
+// Lecture 194. DOM traversing
+
+const h1 = document.querySelector('h1');
+
+// Going downwards: child
+console.log(h1.querySelectorAll('.highlight')); //NodeList(2) [span.highlight, span.highlight]
+console.log(h1.childNodes); //NodeList(9) [text, comment, text, span.highlight, text, br, text, span.highlight, text]
+console.log(h1.children); // HTMLCollection(3) [span.highlight, br, span.highlight]
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'orangered';
+
+// Going upwards: parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+// Going sideways: siblings
+console.log(h1.previousElementSibling); // null
+console.log(h1.nextElementSibling); // h4
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children); // HTMLCollection(4) [h1, h4, button.btn--text.btn--scroll-to, img.header__img]
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = 'scale(0.5)';
+});
