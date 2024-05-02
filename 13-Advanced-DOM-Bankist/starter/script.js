@@ -157,3 +157,20 @@ btnScrollTo.addEventListener('click', function (e) {
   // Modern Way (works only with modern browsers)
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+// Lecture 190: Types of Events and Event Handlers
+// event reference on MDN
+
+const h1 = document.querySelector('h1');
+
+const alertH1 = function (e) {
+  alert('addEventListener: Great! You are reading the heading!');
+}; // mouse hover
+
+h1.addEventListener('mouseenter', alertH1);
+
+setTimeout(() => h1.removeEventListener('mouseenter', alertH1), 3000); // remove w/timer
+
+// h1.onmouseenter = function (e) {
+//   alert('addEventListener: Great! You are reading the heading!');
+// };
