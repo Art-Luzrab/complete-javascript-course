@@ -9,6 +9,10 @@ const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
+const nav = document.querySelector('.nav');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
 
 const openModal = function (e) {
   e.preventDefault();
@@ -95,6 +99,74 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
   }
 });
+
+// Lecture 195. Building A Tabbed Component
+
+// Tabbed component
+// const tabs = document.querySelectorAll('.operations__tab');
+// const tabsContainer = document.querySelector('.operations__tab-container');
+// const tabsContent = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+
+  // Guard Clause
+  if (!clicked) return; // will return null if clicked doesn't exist
+
+  // old way
+  // if(clicked) {
+  //   clicked.classList.add('operations__tab--active');
+  // }
+  // Remove active classes
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  clicked.classList.add('operations__tab--active');
+
+  // Activate Tab
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  // Activate Content Area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+  // console.log(clicked.dataset.tab); // data-tab='1' 2 or 3
+});
+
+// Lecture 196. Passing Arguments to Event Handlers
+
+// Menu fade animation
+
+const handleHover = function (e) {
+  console.log(this, e.currentTarget);
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+      /** bc of .bind */
+    });
+    logo.style.opacity = this;
+  }
+};
+// Passing "argument" into handler
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+/**literally turns this = 0.5 */
+
+nav.addEventListener('mouseout', handleHover.bind(1));
+/**literally turns this = 1 */
+
+// Lecture 197. Implementing A Sticky Navigation: The Scroll Event
+
+// old way unefficient
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function () {
+  console.log(window.scrollY);
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
+
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
@@ -237,7 +309,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
 });
 
 // capturing is rarely used in modern days
-*/
+
 
 // Lecture 194. DOM traversing
 
@@ -269,3 +341,4 @@ console.log(h1.parentElement.children); // HTMLCollection(4) [h1, h4, button.bt
 [...h1.parentElement.children].forEach(function (el) {
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
+*/
