@@ -526,7 +526,6 @@ const jay = Object.create(StudentProto);
 jay.init('Jay', 2010, 'Computer Science');
 jay.introduce(); // My name is Jay and I study Computer Science
 jay.calcAge(); // 27
-*/ //
 
 // Lecture 223. Another Class Example
 
@@ -539,11 +538,11 @@ jay.calcAge(); // 27
 class Account {
   // 1. Public fields (instances)
   locale = navigator.language;
-
+  
   // 2. Private fields (instances)
   #movements = [];
   #pin;
-
+  
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
@@ -553,24 +552,24 @@ class Account {
     // this.locale = navigator.language;
     console.log(`Thanks for opening an account, ${owner}`);
   }
-
+  
   // 3. Public Methods
-
+  
   // Public interface
   getMovements() {
     return this.#movements;
   }
-
+  
   deposit(val) {
     this.#movements.push(val);
     return this;
   }
-
+  
   withdraw(val) {
     this.deposit(-val);
     return this;
   }
-
+  
   requestLoan(val) {
     // this.#approveLoan(val) { will work in future
     if (this._approveLoan(val)) {
@@ -579,11 +578,11 @@ class Account {
       return this;
     }
   }
-
+  
   static helper() {
     console.log('Helper');
   }
-
+  
   // 4. Private methods
   // #approveLoan(val) { will work in future
   _approveLoan(val) {
@@ -617,3 +616,80 @@ Account.helper(); // Helper
 // Lecture 226. Chaining methods
 acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
 console.log(acc1.getMovements()); // (8) [250, -140, 1000, 300, 500, -35, 25000, -4000]
+*/ //
+
+///////////////////////////////////////
+// Coding Challenge #4
+
+/* 
+1. Re-create challenge #3, but this time using ES6 classes: create an 'EVCl' child class of the 'CarCl' class
+2. Make the 'charge' property private;
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery' methods of this class, and also update the 'brake' method in the 'CarCl' class. Then experiment with chaining!
+
+DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
+
+GOOD LUCK 😀
+*/
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    console.log(`${(this.speed += 10)} km/h`);
+  }
+
+  brake() {
+    console.log(`${(this.speed -= 5)} km/h`);
+    return this;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = `${speed * 1.6} km/h`;
+  }
+}
+
+// 1
+
+class EVCL extends CarCl {
+  #charge;
+
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge -= 1;
+    console.log(
+      `${this.make} going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+}
+
+const rivian = new EVCL('Rivian', 120, 23);
+console.log(rivian);
+rivian
+  .accelerate()
+  .accelerate()
+  .accelerate()
+  .brake()
+  .chargeBattery(50)
+  .accelerate();
+
+console.log(rivian.speedUS);
